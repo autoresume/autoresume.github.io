@@ -22,11 +22,46 @@
             authorize: true
         </script>
         <script type="text/javascript">
+            var fullProfileFields = [
+                'last-modified-timestamp',
+                'proposal-comments',
+                'associations',
+                'interests',
+                'publications',
+                'patents',
+                'languages',
+                'skills',
+                'certifications',
+                'educations',
+                'courses',
+                'volunteer',
+                'three-current-positions',
+                'three-past-positions',
+                'num-recommenders',
+                'recommendations-received',
+                'following',
+                'job-bookmarks',
+                'suggestions',
+                'date-of-birth',
+                'member-url-resources',
+                'member-url-resources:(url)',
+                'member-url-resources:(name)',
+                'related-profile-views',
+                'honors-awards',
+                'educations',
+                'phone-numbers',
+                'bound-account-types',
+                'im-accounts',
+                'main-address',
+                'twitter-accounts',
+                'primary-twitter-account',
+                'educations'
+            ];
             function onLinkedInLoad() {
                 IN.Event.on(IN, "auth", onLinkedInAuth);
             }
             function onLinkedInAuth() {
-                IN.API.Profile("me").result(function(profiles) {
+                IN.API.Profile("me").fields(fullProfileFields).result(function(profiles) {
                     var profile = profiles.values[0];
                     document.getElementById('rst').innerHTML = JSON.stringify(profile, null, 4);
                 });

@@ -27,7 +27,7 @@
             }
             function onLinkedInAuth() {
                 IN.API.Profile("me").result(function(profiles) {
-                    var profile = profiles.value[0];
+                    var profile = profiles.values[0];
                     document.getElementById('rst').innerHTML = JSON.stringify(profile, null, 4);
                 });
             }

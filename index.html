@@ -8,6 +8,26 @@
         <link rel="shortcut icon" href="/favicon.ico">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <script type="in/Login">
+            Hello, <?js= firstName ?> <?js= lastName ?>.
+        </script>
+        <p>
+            <pre id='rst'>
+                
+            </pre>
+        </p>
+        <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+            api_key: 7836focl5u7mn2
+            onLoad: onLinkedInLoad
+            authorize: true
+        </script>
+        <script type="text/javascript">
+            function onLinkedInLoad() {
+                IN.API.Profile("me").result(function(profiles) {
+                    var profile = profiles.value[0];
+                    document.getElementById('rst').innerHTML = JSON.stringify(profile, null, 4);
+                });
+            }
+        </script>
     </body>
 </html>

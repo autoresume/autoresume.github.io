@@ -23,6 +23,9 @@
         </script>
         <script type="text/javascript">
             function onLinkedInLoad() {
+                IN.Event.on(IN, "auth", onLinkedInAuth);
+            }
+            function onLinkedInAuth() {
                 IN.API.Profile("me").result(function(profiles) {
                     var profile = profiles.value[0];
                     document.getElementById('rst').innerHTML = JSON.stringify(profile, null, 4);

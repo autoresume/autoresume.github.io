@@ -1,0 +1,171 @@
+$icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/';
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+// variables
+$carousel-width: 210 / 700 * 100%;
+$carousel-height: 297 / 700 * 100%;
+$carousel-scale: 1.5;
+$carousel-left: 100 / 700 * 100%;
+$header-margin: 200px;
+
+$color-grey: #e5e5e5;
+$color-link: #073375;
+$color-red:  #c9302c;
+
+$font-logo: 'Ubuntu', sans-serif;
+$font-main: 'Ubuntu', sans-serif;
+
+
+// Space out content a bit
+body {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  font-family: $font-main;
+}
+
+// Everything but the jumbotron gets side spacing for mobile first views 
+.header,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+// Custom page header 
+.header {
+  border-bottom: 1px solid $color-grey;
+
+  #logo {
+    height: $header-margin;
+    position: relative;
+    right: 50px;
+    text-align: right;
+    top: $header-margin - 50px;
+    letter-spacing: -0.1em;
+
+    .part1 {
+      color: $color-link;
+    }
+
+    .part2 {
+      color: #000;
+    }
+  }
+}
+
+a {
+  color: $color-link;
+  text-decoration: none; 
+}
+
+a:hover,
+a:focus {
+  color: $color-link;
+  text-decoration: underline; 
+}
+
+a:focus {
+  outline: none; 
+}
+
+#carousel-tmpl {
+  float: left;
+  height: $carousel-scale * $carousel-height;
+  left: $carousel-left;
+  position: relative;
+  top: -140px;
+  width: $carousel-scale * $carousel-width;
+
+  img {
+    border: 1px solid $color-grey;
+  }
+
+  .carousel-caption {
+    bottom: -70px;
+    color: #333;
+    left: 0;
+    right: 0;
+    text-shadow:none;
+  }
+
+  .tmpl-type {
+    color: $color-red;
+  }
+  .carousel-inner {
+    padding-bottom: 70px;
+  }
+
+  .carousel-control {
+    background: transparent;
+    color: #000;
+
+  }
+
+
+  .carousel-control.right {
+    right: -15%;
+  }
+
+  .carousel-control.left {
+    left: -15%;
+  }
+}
+
+#main {
+  float: right;
+  width: 250 / 700 * 100%;
+  padding: 25px;
+
+  h4 {
+    font-size: inherit;
+  }
+
+  p {
+    margin-left: 20px;
+  }
+
+  div.list-group-item {
+    padding: 0 15px;
+  }
+
+  h4.rst-format {
+    border-bottom: 1px solid $color-grey;
+  }
+
+  #rst-list {
+    display: none;
+  }
+
+  #msg {
+    color: $color-red;
+  }
+}
+
+// Custom page footer
+.footer {
+  border-top: 1px solid $color-grey;
+  color: #777;
+  margin: -100px 0 0 0;
+  padding-top: 19px;
+}
+
+
+// Responsive: Portrait tablets and up 
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+
+  // Remove the padding we set earlier 
+  .header,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  // Space out the masthead 
+  .header {
+    margin-bottom: 30px;
+  }
+}

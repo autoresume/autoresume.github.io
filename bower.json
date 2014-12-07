@@ -1,0 +1,11 @@
+{
+  "name": "autoresume-github-io",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass-official": "~3.2.0",
+    "modernizr": "~2.8.2",
+    "doT": "~1.0.1",
+    "FileSaver": "*",
+    "zeroclipboard": "~2.1.6"
+  }
+}

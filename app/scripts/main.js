@@ -5,6 +5,7 @@ AR.onLinkedInLoad = function() {
 };
 
 doT.templateSettings.strip = false;
+ZeroClipboard.config( { swfPath: "/ZeroClipboard.swf" } );
 
 AR.onLinkedInAuth = function() {
   $('#msg').html("");
@@ -26,6 +27,7 @@ AR.onLinkedInAuth = function() {
           var fillTemplatesFn = doT.template($('#rst-tmpl').html());
           $('#rst-list').html(fillTemplatesFn(type));
           $('#rst-list').show();
+          AR.bindZclip();
         },
         error: function(xhr, status, err) {
           $('#msg').html(err);
@@ -35,9 +37,27 @@ AR.onLinkedInAuth = function() {
   });
 };
 
-AR.download = function() {
+AR.bindZclip = function() {
+  if (AR.zclipClients) ZeroClipboard.destroy();
+  AR.zclipClients = new ZeroClipboard($(".btn-copy"));
+  AR.zclipClients.on('ready', function(event) {
 
-}
+    AR.zclipClients.on('beforecopy', function(event){
+    });
+
+    AR.zclipClients.on('copy', function(event){
+      event.clipboardData.setData( "text/plain", AR.resumeStr);
+    });
+
+    AR.zclipClients.on('aftercopy', function(e) {
+      window.alert("Resume copied to clipboard!");
+    });
+    AR.zclipClients.on('error', function(e) {
+      console.log(e);
+    });
+  });
+};
+
 
 $(function () {
   // load templates
@@ -49,23 +69,7 @@ $(function () {
     interval: false
   });
 
-
   $('#btn-generate').click(function(event) {
-      $('#msg').html("Please login to LinkedIn first.");
+    $('#msg').html("Please login to LinkedIn first.");
   });
-
-  ZeroClipboard.config( { swfPath: "/ZeroClipboard.swf" } );
-  var client = new ZeroClipboard($(".btn-copy"));
-  client.on('ready', function(event) {
-
-    client.on('copy', function(event){
-      var clipboard = event.clipboardData;
-      clipboard.setData( "text/plain", AR.resumeStr );
-    });
-    
-    client.on('aftercopy', function() {
-      window.alert("Resume copied to clipboard!");
-    });
-  });
-
 });

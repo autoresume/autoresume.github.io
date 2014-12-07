@@ -56,12 +56,16 @@ $(function () {
 
   ZeroClipboard.config( { swfPath: "/ZeroClipboard.swf" } );
   var client = new ZeroClipboard($(".btn-copy"));
-  client.on('copy', function(event){
-    var clipboard = event.clipboardData;
-    clipboard.setData( "text/plain", AR.resumeStr );
+  client.on('ready', function(event) {
+
+    client.on('copy', function(event){
+      var clipboard = event.clipboardData;
+      clipboard.setData( "text/plain", AR.resumeStr );
+    });
+    
+    client.on('aftercopy', function() {
+      window.alert("Resume copied to clipboard!");
+    });
   });
-  client.on('aftercopy', function() {
-    window.alert("Resume copied to clipboard!");
-  })
 
 });

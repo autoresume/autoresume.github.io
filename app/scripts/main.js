@@ -54,7 +54,7 @@ $(function () {
       $('#msg').html("Please login to LinkedIn first.");
   });
 
-  ZeroClipboard.config( { swfPath: "/bower_components/zeroclipboard/dist/ZeroClipboard.swf" } );
+  ZeroClipboard.config( { swfPath: "/ZeroClipboard.swf" } );
   var client = new ZeroClipboard($(".btn-copy"));
   client.on('copy', function(event){
     var clipboard = event.clipboardData;

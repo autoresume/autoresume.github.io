@@ -331,6 +331,9 @@ module.exports = function (grunt) {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
           dest: '<%= config.dist %>/.htaccess'
         }, {
+          src: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf',
+          dest: '<%= config.dist %>/ZeroClipboard.swf'
+        }, {
           expand: true,
           dot: true,
           cwd: '.',

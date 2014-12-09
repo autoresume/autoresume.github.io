@@ -54,19 +54,21 @@ body {
   }
 }
 
-a {
+a,
+a:active,
+a:focus,
+.btn-copy.zeroclipboard-is-active {
   color: $color-link;
   text-decoration: none; 
 }
 
 a:hover,
-a:focus {
-  color: $color-link;
+.btn-copy.zeroclipboard-is-hover {
   text-decoration: underline; 
 }
 
 a:focus {
-  outline: none; 
+  outline: none;
 }
 
 #carousel-tmpl {

@@ -6,6 +6,6 @@
     "modernizr": "~2.8.2",
     "doT": "~1.0.1",
     "FileSaver": "*",
-    "zeroclipboard": "~2.1.6"
+    "zeroclipboard": "git://github.com/zeroclipboard/zeroclipboard.git#fcdf868603a761274b3686adefad484a6954bd26"
   }
 }

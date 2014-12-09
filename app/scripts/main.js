@@ -5,7 +5,7 @@ AR.onLinkedInLoad = function() {
 };
 
 doT.templateSettings.strip = false;
-ZeroClipboard.config( { swfPath: "/ZeroClipboard.swf" } );
+ZeroClipboard.config( { swfPath: "/bower_components/zeroclipboard/dist/ZeroClipboard.swf" } );
 
 AR.onLinkedInAuth = function() {
   $('#msg').html("");
@@ -46,11 +46,12 @@ AR.bindZclip = function() {
     });
 
     AR.zclipClients.on('copy', function(event){
+      // event.clipboardData.setData( "text/plain", AR.resumeStr);
       event.clipboardData.setData( "text/plain", AR.resumeStr);
     });
 
     AR.zclipClients.on('aftercopy', function(e) {
-      window.alert("Resume copied to clipboard!");
+      $(e.target).children('span').removeClass('hide').show();
     });
     AR.zclipClients.on('error', function(e) {
       console.log(e);
@@ -71,5 +72,9 @@ $(function () {
 
   $('#btn-generate').click(function(event) {
     $('#msg').html("Please login to LinkedIn first.");
+  });
+
+  $('.btn-copy').on('click', function(event) {
+    $(this).children('span').hide();
   });
 });

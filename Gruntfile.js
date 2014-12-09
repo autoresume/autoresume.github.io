@@ -332,7 +332,7 @@ module.exports = function (grunt) {
           dest: '<%= config.dist %>/.htaccess'
         }, {
           src: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf',
-          dest: '<%= config.dist %>/ZeroClipboard.swf'
+          dest: '<%= config.dist %>'
         }, {
           expand: true,
           dot: true,

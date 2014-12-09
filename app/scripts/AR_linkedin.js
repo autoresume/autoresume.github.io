@@ -47,7 +47,7 @@ AR.renderDate = function(date) {
 };
 
 AR.getPhone = function(phoneNumbers) {
-  if (phoneNumbers.length < 1) return "Provide upon request";
+  if (!phoneNumbers || phoneNumbers.length < 1) return "Provide upon request";
   var order = ['mobile', 'work', 'home'];
   for (var i = 0; i < phoneNumbers.length; i++) {
     var num = phoneNumbers[i];

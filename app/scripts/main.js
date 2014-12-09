@@ -77,4 +77,10 @@ $(function () {
   $('.btn-copy').on('click', function(event) {
     $(this).children('span').hide();
   });
+  document.addEventListener( 'keydown', function(ev) {
+    var keyCode = ev.keyCode || ev.which;
+    if( keyCode === 73) {
+      console.log(AR.profile);
+    }
+  });
 });

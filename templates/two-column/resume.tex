@@ -73,8 +73,8 @@
 %	TITLE
 %----------------------------------------------------------------------------------------
 
-\par{\centering{\sffamily\Huge John Smith}\\ % Your name
-{\color{headings}\fontspec[Variant = 2]{Droid Serif} Curriculum {Vit\fontspec[Variant = 3]{Droid Serif}\ae}\\[15pt]\par} % Curriculum vitae text in the Zapfino font
+\par{\centering{\sffamily\Huge {{=it.firstName}} {{=it.lastName}} }\\ % Your name
+\vspace{20pt}
 	
 %----------------------------------------------------------------------------------------
 
@@ -85,21 +85,23 @@
 %	WORK EXPERIENCE
 %----------------------------------------------------------------------------------------
 
+\section{Summary} 
+\normalsize{ {{=AR.LatexText(it.summary)}} }\\
+
+
 \section{Work Experience} 
 
-%------------------------------------------------
-% WORK EXPERIENCE 1
-%------------------------------------------------
 {{~it.threePastPositions.values :position:index}}
 {\raggedleft\textsc{ {{? position.isCurrent}}Current, from {{=AR.renderDate(position.startDate)}}{{??}}{{=AR.renderDate(position.startDate)}} -- {{=AR.renderDate(position.endDate)}}{{?}} }\par}
 
 {\raggedright\large {{=position.company.name}} \\
 \textit{ {{=position.title}} }\\[5pt]}
 
-\normalsize{ {{=position.summary}} }\\
+\normalsize{ {{=AR.LatexText(position.summary)}} }\\
 {{~}}
 
-%----------------------------------------------------------------------------------------	
+%----------------------------------------------------------------------------------------
+
 
 \end{minipage} % End the left-hand side of the page
 \hfill
@@ -112,10 +114,10 @@
 
 \colorbox{shade}{\textcolor{text1}{
 \begin{tabular}{c|p{7cm}}
-\raisebox{-4pt}{\textifsymbol{18}} & 123 Broadway, City, State 12345 \\ % Address
-\raisebox{-3pt}{\Mobilefone} & +1 (1)23 4567890 \\ % Phone number
-\raisebox{-1pt}{\Letter} & \href{mailto:john@smith.com}{john@smith.com} \\ % Email address
-\Keyboard & \href{http://www.johnsmith.com}{http://www.johnsmith.com} \\ % Website
+\raisebox{-4pt}{\textifsymbol{18}} & {{=it.mainAddress}} \\ % Address
+\raisebox{-3pt}{\Mobilefone} & {{=AR.getPhone(it.phoneNumbers.values)}} \\ % Phone number
+\raisebox{-1pt}{\Letter} & \href{mailto:{{=it.emailAddress}} }{ {{=it.emailAddress}} } \\ % Email address
+{{? it.memberUrlResources.values.length > 0}}\Keyboard & \href{ {{=it.memberUrlResources.values[0].url}} }{ {{=it.memberUrlResources.values[0].url}} } \\ % Website {{?}}
 \end{tabular}
 }
 }\\[10pt]
@@ -128,42 +130,12 @@
 
 \begin{tabular}{rl} % Start a table with two columns, one for dates and one for qualifications
 
-%------------------------------------------------
-% EDUCATION 1
-%------------------------------------------------
-
-2011 -- \textsc{Present} & \textbf{Doctor of Philosophy} \\ 
-& \textsc{Computer Science} \\ 
-& \textit{The University of California}\\
+{{~it.educations.values :education:index}}
+{{=AR.renderDate(education.startDate)}} -- \textsc{ {{=AR.renderDate(education.endDate)}} } & \textbf{ {{=education.degree}} } \\ 
+& \textsc{{{=education.fieldOfStudy}}} \\ 
+& \textit{{{=education.schoolName}}}\\
 &\\
-	 
-%------------------------------------------------
-% EDUCATION 2
-%------------------------------------------------
-
-2010 & \textbf{Master of Science} \\ 
-& \small First Class Honours \\
-& \textsc{Computer Science} \\ 
-& \textit{The University of California}\\
-&\\
-	 
-%------------------------------------------------
-% EDUCATION 3
-%------------------------------------------------
-
-2009 & \textbf{Postgraduate Diploma}\\
-& \small Distinction \\
-& \textsc{Computer Science} \\
-& \textit{The University of California}\\
-&\\
-	 
-%------------------------------------------------
-% EDUCATION 4
-%------------------------------------------------
-
-2006 -- 2008 & \textbf{Bachelor of Business Studies}\\
-& \textsc{Commerce} \\
-& \textit{The University of California} 
+{{~}}
 	
 %----------------------------------------------------------------------------------------
 

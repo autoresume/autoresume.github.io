@@ -38,6 +38,7 @@ AR.fullProfileFields = [
 ];
 
 AR.renderDate = function(date) {
+  if (!data) return "not set";
   if (date.month) {
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     return months[date.month-1] + " " + date.year;

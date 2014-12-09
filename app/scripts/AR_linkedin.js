@@ -57,6 +57,7 @@ AR.getPhone = function(phoneNumbers) {
 }
 
 AR.LatexText = function(text) {
+  if (!text) return 'TBD';
   /**
    * Latex escape library by dangmai
    * https://github.com/dangmai/escape-latex/

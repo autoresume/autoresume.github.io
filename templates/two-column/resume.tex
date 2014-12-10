@@ -117,8 +117,8 @@
 \raisebox{-4pt}{\textifsymbol{18}} & {{=it.mainAddress}} \\ % Address
 \raisebox{-3pt}{\Mobilefone} & {{=AR.getPhone(it.phoneNumbers.values)}} \\ % Phone number
 \raisebox{-1pt}{\Letter} & \href{mailto:{{=it.emailAddress}} }{ {{=it.emailAddress}} } \\ % Email address
-{{? it.memberUrlResources.values && it.memberUrlResources.values.length > 0}}\Keyboard & \href{ {{=it.memberUrlResources.values[0].url}} }{ {{=it.memberUrlResources.values[0].url}} } \\ % Website {{?}}
-\end{tabular}
+{{? it.memberUrlResources.values && it.memberUrlResources.values.length > 0}}\Keyboard & \href{ {{=it.memberUrlResources.values[0].url}} }{ {{=it.memberUrlResources.values[0].url}} } \\ % Website 
+{{?}}\end{tabular}
 }
 }\\[10pt]
 

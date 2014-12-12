@@ -12,13 +12,13 @@ AR.templates = [
         }
     },
     {
-        id: 'light-blue',
-        preview: '/templates/light-blue/preview.png',
-        src: '/templates/light-blue/resume.html',
-        type: 'HTML',
+        id: 'plasmati',
+        preview: '/templates/plasmati/preview.png',
+        src: '/templates/plasmati/resume.tex',
+        type: 'LaTeX',
         author: {
-            name: 'Xing Wu',
-            url: 'http://xingwu.me/'
+            name: 'LaTeXTemplates',
+            url: 'http://www.latextemplates.com/'
         }
     }
 ];

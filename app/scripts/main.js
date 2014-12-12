@@ -10,7 +10,7 @@ ZeroClipboard.config( { swfPath: "/bower_components/zeroclipboard/dist/ZeroClipb
 AR.onLinkedInAuth = function() {
   $('#msg').html("");
   IN.API.Profile('me').fields(AR.fullProfileFields).result(function(profiles) {
-    AR.profile = profiles.values[0];
+    AR.profile = AR.processProfile(profiles.values[0]);
     $('#btn-generate').click(function(event) {
 
       $('#msg').html("");
@@ -21,13 +21,17 @@ AR.onLinkedInAuth = function() {
       $.ajax({
         url: src,
         success: function(data) {
-          var tempFn = doT.template(data);
-          AR.resumeStr = tempFn(AR.profile);
-          AR.resumeBlob = new Blob([AR.resumeStr], {type: "text/plain;charset=utf-8"});
-          var fillTemplatesFn = doT.template($('#rst-tmpl').html());
-          $('#rst-list').html(fillTemplatesFn(type));
-          $('#rst-list').show();
-          AR.bindZclip();
+          try {
+            var tempFn = doT.template(data);
+            AR.resumeStr = tempFn(AR.profile);
+            AR.resumeBlob = new Blob([AR.resumeStr], {type: "text/plain;charset=utf-8"});
+            var fillTemplatesFn = doT.template($('#rst-tmpl').html());
+            $('#rst-list').html(fillTemplatesFn(type));
+            $('#rst-list').show();
+            AR.bindZclip();
+          } catch (err) {
+            $('#msg').html('Render template error: ' + err.message);
+          }
         },
         error: function(xhr, status, err) {
           $('#msg').html(err);
@@ -71,7 +75,7 @@ $(function () {
   });
 
   $('#btn-generate').click(function(event) {
-    $('#msg').html("Please login to LinkedIn first.");
+    $('#msg').html("Please sign in LinkedIn first.");
   });
 
   $('.btn-copy').on('click', function(event) {

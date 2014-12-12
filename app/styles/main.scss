@@ -72,12 +72,7 @@ a:focus {
 }
 
 #carousel-tmpl {
-  float: left;
-  height: $carousel-scale * $carousel-height;
-  left: $carousel-left;
-  position: relative;
-  top: -140px;
-  width: $carousel-scale * $carousel-width;
+  margin: -140px 30px 0 50px;
 
   img {
     border: 1px solid $color-grey;
@@ -106,18 +101,15 @@ a:focus {
 
 
   .carousel-control.right {
-    right: -15%;
+    right: -8%;
   }
 
   .carousel-control.left {
-    left: -15%;
+    left: -8%;
   }
 }
 
 #main {
-  float: right;
-  width: 250 / 700 * 100%;
-  padding: 25px;
 
   h4 {
     font-size: inherit;
@@ -148,7 +140,7 @@ a:focus {
 .footer {
   border-top: 1px solid $color-grey;
   color: #777;
-  margin: -100px 0 0 0;
+  text-align: center;
   padding-top: 19px;
 }
 

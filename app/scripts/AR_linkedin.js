@@ -37,14 +37,26 @@ AR.fullProfileFields = [
   'primary-twitter-account'
 ];
 
-AR.renderDate = function(date) {
+AR.renderDate = function(date, fmt) {
   if (!date) return "not set";
+  var month = "", day = "", year = "";
   if (date.month) {
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    return months[date.month-1] + " " + date.year;
-  } else {
-    return date.year;
+    month = months[date.month-1];
   }
+  if (date.day) {
+    day = date.day;
+  }
+  if (date.year) {
+    year = date.year;
+  }
+  if (!fmt) fmt = "%m %d, %Y";
+  if (!date.day) {
+    fmt = "%m %Y";
+  } else if (!date.year) {
+    fmt = "%m %d";
+  }
+  return fmt.replace("%Y", year).replace("%m", month).replace("%d", day);
 };
 
 AR.getPhone = function(phoneNumbers) {
@@ -57,7 +69,7 @@ AR.getPhone = function(phoneNumbers) {
   return phoneNumbers.sort(function(a, b){return a.index-b.index;})[0].phoneNumber;
 }
 
-AR.LatexText = function(text) {
+AR.LatexText = function(text, options) {
   if (!text) return 'TBD';
   /**
    * Latex escape library by dangmai
@@ -75,7 +87,10 @@ AR.LatexText = function(text) {
     '^': '\\textasciicircum{}',
     '_': '\\_',
     '~': '\\textasciitilde{}'
-  },
+  };
+  if (options && options.linebreak === false) {
+    delete escapes['\n'];
+  }
 
   /**
    * Escape a string to be used in JS regular expression.
@@ -83,13 +98,14 @@ AR.LatexText = function(text) {
    * @param str the string to be used in a RegExp
    * @return the escaped string, ready to be used for RegExp
    */
-  escapeRegExp = function (str) {
+  var escapeRegExp = function (str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
   },
   escapeKeys = Object.keys(escapes), // as it is reused later on
   escapeKeyRegExps = escapeKeys.map(function (key) {
     return escapeRegExp(key);
   });
+
 
   /**
   * Escape a string to be used in LaTeX documents.
@@ -124,6 +140,25 @@ AR.LatexText = function(text) {
   }
 
   return lescape(text);
-}
+};
 
+AR.processProfile = function(profile) {
+  profile = profile || {};
+
+  // combine current positions and past positions
+  profile.positions = {_total: 0, values: []};
+  if (profile.threeCurrentPositions && profile.threeCurrentPositions.values) {
+    for (var i = 0; i < profile.threeCurrentPositions.values.length; i++) {
+      profile.positions.values.push(profile.threeCurrentPositions.values[i]);
+      profile.positions._total++;
+    }
+  }
+  if (profile.threePastPositions && profile.threePastPositions.values) {
+    for (var i = 0; i < profile.threePastPositions.values.length; i++) {
+      profile.positions.values.push(profile.threePastPositions.values[i]);
+      profile.positions._total++;
+    }
+  }
+  return profile;
+};
 
